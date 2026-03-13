@@ -6,10 +6,10 @@ import PhotoCard from "./PhotoCard";
 
 // this is a list of all the photo_ids
 const initialState = JSON.parse(
-    localStorage.getItem("favourites")
+    localStorage.getItem("favorites")
 ) || [];
 
-function favouritesReducer(state, action) {
+function favoritesReducer(state, action) {
 
   if (action.type == "TOGGLE_FAV"){
     const photo_exists = state.includes(action.photo_id);
@@ -39,8 +39,8 @@ export default function Gallery() {
     const [search, setSearch] = useState("");
 
 
-    const [favourites, dispatch] = useReducer(
-        favouritesReducer,
+    const [favorites, dispatch] = useReducer(
+        favoritesReducer,
         initialState
     );
 
@@ -98,7 +98,7 @@ export default function Gallery() {
                     <PhotoCard
                         key={photo.id}
                         photo={photo}
-                        isFav={favourites.includes(photo.id)}
+                        isFav={favorites.includes(photo.id)}
                         toggleFav={toggleFav}
                     />
                 ))}
